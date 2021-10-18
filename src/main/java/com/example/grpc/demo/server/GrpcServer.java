@@ -1,6 +1,7 @@
 package com.example.grpc.demo.server;
 
 import com.example.grpc.demo.impl.HelloServiceImpl;
+import com.example.grpc.demo.impl.StreamServiceImpl;
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
 import lombok.SneakyThrows;
@@ -50,6 +51,7 @@ public class GrpcServer {
     private void start() {
         server = ServerBuilder.forPort(grpcConfig.getPort())
                 .addService(new HelloServiceImpl())
+                .addService(new StreamServiceImpl())
                 .build()
                 .start();
         log.info("gRPC Server started, listening on " + grpcConfig.getPort());

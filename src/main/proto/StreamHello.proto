@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.example.grpc.demo.streamHello";
+option java_outer_classname = "StreamHello";
+
+package streamHello;
+
+message StreamRequest{
+  string name = 1;
+}
+
+message StreamResponse{
+  string data = 1;
+}
+
+service MyStreamService{
+  rpc responseStream(StreamRequest) returns (stream StreamResponse){};
+
+  rpc requestStream(stream StreamRequest) returns (StreamResponse){};
+
+  rpc bothStream(stream StreamRequest) returns (stream StreamResponse){}
+}
